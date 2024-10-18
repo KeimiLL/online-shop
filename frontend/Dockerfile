@@ -1,6 +1,6 @@
 FROM node:22.2-alpine AS node
 
-WORKDIR /app
+WORKDIR /usr/src/app
 
 COPY package*.json ./
 RUN yarn install

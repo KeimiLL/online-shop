@@ -1,8 +1,11 @@
-from sqlalchemy import create_engine, MetaData
-import os
-# Initializes the database engine
-engine = create_engine("mysql+pymysql://root:Zaq12wsx@localhost:3306/online_shop")
-# Creates a MetaData object to store information about the database schema (tables, columns, ...)
-meta = MetaData() 
-# Establishes a connection to the database using the engine. The `conn` object is used for executing SQL queries.
-conn = engine.connect() 
+import sqlalchemy as _sql
+import sqlalchemy.ext.declarative as _declarative
+import sqlalchemy.orm as _orm
+
+DATABASE_URL = "postgresql://myuser:Zaq12wsx@db:5432/fastapi_database"
+
+engine = _sql.create_engine(DATABASE_URL)
+
+SessionLocal = _orm.sessionmaker(autocommit=False, autoflush=False, bind=engine)
+
+Base = _declarative.declarative_base()
