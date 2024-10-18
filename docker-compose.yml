@@ -8,23 +8,33 @@ services:
     depends_on:
       - db
     environment:
-      - DB_HOST=localhost
-      - DB_NAME=online_shop
-      - DB_USER=root
-      - DB_PASSWORD=Zaq12wsx
-      - DB_PORT=3306
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: Zaq12wsx
 
-  
   db:
-    image: mysql:8
-    container_name: mysql-db
+    image: postgres:alpine
+    container_name: fastapi-postgres
+    restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: Zaq12wsx
-      MYSQL_DATABASE: online_shop
-    ports:
-      - "3306:3306"
+      POSTGRES_DB: fastapi_database
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: Zaq12wsx
     volumes:
-      - db_data:/var/lib/mysql
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  frontend:
+    build: ./frontend
+    volumes:
+      - ./frontend/src:/app
+      - /app/node_modules/
+    ports:
+      - 4200:4200
+    depends_on:
+      - backend
 
 volumes:
-  db_data:
+  postgres_data:
+
+

@@ -1,13 +1,13 @@
-from sqlalchemy import Table, Column
-from sqlalchemy.sql.sqltypes import Integer, String
-from config.db import meta, engine
+from sqlalchemy import Column, Integer, String, TIMESTAMP, text
 
-users = Table('users', meta,
-Column('id', Integer, primary_key=True),
-Column('name', String(255)),
-Column('email', String(255)),
-Column('password', String(255))
-)
+import config.db as _db
 
-# Used to create database tables that are defined in the MetaData object (meta) by issuing the appropriate SQL commands to the database
-meta.create_all(engine)
+class User(_db.Base):
+    __tablename__ = "users"
+    
+    id = Column(Integer, primary_key=True, index=True)
+    first_name = Column(String, nullable=False, index=True)
+    last_name = Column(String, nullable=False, index=True)
+    email = Column(String, nullable=False, index=True, unique=True)
+    phone_number = Column(String, nullable=False, index=True, unique=True)
+    date_created = Column(TIMESTAMP(timezone=True), server_default=text('now()'), nullable=False)
