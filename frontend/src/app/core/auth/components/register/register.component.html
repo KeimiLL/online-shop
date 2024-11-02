@@ -1,5 +1,87 @@
 <div class="container">
-    <div class="register">
-      
-    </div>
-  </div>
+    <header>
+        <h3>Create an account</h3>
+    </header>
+    <form [formGroup]="myForm" class="register">
+        <mat-form-field class="register__field">
+            <mat-label>First Name</mat-label>
+            <input
+                matInput
+                type="text"
+                formControlName="firstName"
+                required
+                placeholder="Your first name..."
+            />
+            @if (firstName?.errors) {
+            <mat-error>Invalid Control</mat-error>
+            }
+        </mat-form-field>
+
+        <mat-form-field class="register__field">
+            <mat-label>Last Name</mat-label>
+            <input
+                matInput
+                type="text"
+                formControlName="lastName"
+                required
+                placeholder="Your last name..."
+            />
+            @if (lastName?.errors) {
+            <mat-error>Invalid Control</mat-error>
+            }
+        </mat-form-field>
+
+        <mat-form-field class="register__field">
+            <mat-label>Email</mat-label>
+            <input
+                matInput
+                type="email"
+                formControlName="email"
+                required
+                placeholder="j.kowalski@gmail.com"
+            />
+            @if (email?.errors) {
+            <mat-error>Invalid Control</mat-error>
+            }
+        </mat-form-field>
+
+        <mat-form-field class="register__field">
+            <mat-label>Phone number</mat-label>
+            <input
+                matInput
+                type="tel"
+                formControlName="phoneNumber"
+                required
+                placeholder="111 222 333"
+            />
+            @if (phoneNumber?.errors) {
+            <mat-error>Invalid Control</mat-error>
+            }
+        </mat-form-field>
+
+        <mat-form-field class="register__field">
+            <mat-label>Password</mat-label>
+            <input
+                matInput
+                type="password"
+                formControlName="password"
+                required
+                placeholder="Enter password..."
+            />
+            @if (password?.hasError('minlength')) {
+            <mat-error>Too </mat-error>
+            }
+        </mat-form-field>
+
+        <button
+            class="register__button"
+            mat-raised-button
+            type="submit"
+            (click)="onSubmit()"
+            [disabled]="!myForm.valid"
+            [ngClass]="{ 'register__button--invalid': !myForm.valid }"
+        >
+            Register Now
+        </button>
+    </form>
+</div>

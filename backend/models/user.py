@@ -10,4 +10,5 @@ class User(_db.Base):
     last_name = Column(String, nullable=False, index=True)
     email = Column(String, nullable=False, index=True, unique=True)
     phone_number = Column(String, nullable=False, index=True, unique=True)
+    password = Column(String, nullable=False, index=True, unique=True)
     date_created = Column(TIMESTAMP(timezone=True), server_default=text('now()'), nullable=False) 

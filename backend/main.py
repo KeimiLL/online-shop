@@ -1,19 +1,22 @@
-from fastapi import FastAPI, Depends
+from fastapi import Depends, FastAPI
+from typing import Annotated
 from routes.user import user
-from typing import TYPE_CHECKING, List
-import schemas.user as _userSchemas
-import services as _services
-from sqlalchemy.orm import Session
-
-if TYPE_CHECKING:
-    from sqlalchemy.orm import Session
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.security import OAuth2PasswordBearer
 
 app = FastAPI()
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
-# app.include_router(user)
-@app.post("/api/users/", response_model=_userSchemas.User)
-async def create_user(
-    user: _userSchemas.CreateUser,
-    db: Session = Depends(_services.get_db)
-):
-    return _services.create_user(user=user, db=db)
+@app.get("/items/")
+async def read_items(token: Annotated[str, Depends(oauth2_scheme)]):
+    return {"token": token}
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+app.include_router(user)
