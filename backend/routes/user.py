@@ -16,8 +16,8 @@ user = APIRouter()
 
 
 @user.get("/api/users/{user_id}", response_model=_userSchemas.UserResponse, summary="Get a user by id")
-async def get_user(db, username: str):
-    return _services.get_user(db=db, username=username)
+async def get_user(user_id: int, db: Session = Depends(_services.get_db)):
+    return _services.get_user(user_id=user_id, db=db)
     
 
 @user.post("/api/users/", response_model=_userSchemas.UserResponse, summary="Create a new user", status_code=201)
@@ -54,7 +54,7 @@ async def get_all_users(db: Session = Depends(_services.get_db)):
 async def login_for_access_token(
     form_data: Annotated[OAuth2PasswordRequestForm, Depends()], db: Session = Depends(_services.get_db)
 ) -> jwtUtils.Token:
-    user = jwtUtils.authenticate_user(db, form_data.email, form_data.password)
+    user = jwtUtils.authenticate_user(db, form_data.username, form_data.password)
     if not user:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,

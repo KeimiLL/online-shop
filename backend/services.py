@@ -149,7 +149,11 @@ def get_all_users(db: "Session") -> List[_userModels.User]:
     return db.query(_userModels.User).all()
 
 
-def get_user(db: "Session", username: str) -> _userSchemas.UserResponse:
-    if username in db:
-        user_dict = db[username]
-        return _userSchemas.UserInDB(**user_dict)
+def get_user(user_id: int, db: "Session") -> _userSchemas.UserResponse:
+    user = db.query(_userModels.User).filter(_userModels.User.id == user_id).first()
+    if not user:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="User not found"
+        )
+    return user

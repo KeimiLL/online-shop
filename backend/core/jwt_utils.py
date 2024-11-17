@@ -1,14 +1,11 @@
-from datetime import timedelta, timezone
-import datetime
+from datetime import timedelta, timezone, datetime
 from typing import Annotated, TYPE_CHECKING
 from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
 import jwt
 from pydantic import BaseModel
 from passlib.context import CryptContext
-import schemas.user as _userSchemas
-
-from models.user import User
+import models.user as _userModels
 
 if TYPE_CHECKING:
     # Import SQLAlchemy Session for type checking
@@ -43,10 +40,9 @@ def get_password_hash(password):
     return pwd_context.hash(password)
 
 
-def get_user(db: "Session", username: str):
-    if username in db:
-        user_dict = db[username]
-        return _userSchemas.UserInDB(**user_dict)
+def get_user(db: "Session", email: str):
+    user = db.query(_userModels.User).filter(_userModels.User.email == email).first()
+    return user
 
 
 def authenticate_user(db: "Session", email: str, password: str):
