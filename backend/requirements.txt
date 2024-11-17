@@ -4,3 +4,7 @@ sqlalchemy
 databases
 psycopg2-binary
 pre-commit
+pyjwt
+bcrypt==4.0.1
+passlib[bcrypt]
+python-multipart

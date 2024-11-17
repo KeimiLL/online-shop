@@ -3,6 +3,7 @@ import config.db as _db
 import models.user as _userModels
 import schemas.user as _userSchemas
 from fastapi import HTTPException, status
+import core.jwt_utils as jwtUtils
 
 if TYPE_CHECKING:
     # Import SQLAlchemy Session for type checking
@@ -35,7 +36,7 @@ def get_db():
 
 def create_user(
         user: _userSchemas.CreateUser, db: "Session"
-) -> _userSchemas.User:    
+) -> _userSchemas.UserResponse:    
     """
     Creates a new user in the database.
     
@@ -46,14 +47,30 @@ def create_user(
     Returns:
         _userSchemas.User: The newly created user object.
     """
-    new_user = _userModels.User(**user.dict())
+     # Check if user with the same email already exists
+    db_user = db.query(_userModels.User).filter(_userModels.User.email == user.email).first()
+    if db_user:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Email already registered"
+        )
+
+    # Hash the password before saving
+    hashed_password = jwtUtils.get_password_hash(user.password)
+    new_user_data = user.dict()
+    new_user_data["hashed_password"] = hashed_password  # Store hashed password
+    del new_user_data["password"]  # Remove plain password from data
+
+    # Create the user instance
+    new_user = _userModels.User(**new_user_data)
     db.add(new_user)
     db.commit()
     db.refresh(new_user)
-    return new_user
+
+    return _userSchemas.UserResponse.from_orm(new_user)
 
 
-def update_user(user_id: int, user: _userSchemas.UpdateUser, db: "Session") -> _userSchemas.User:
+def update_user(user_id: int, user: _userSchemas.UpdateUser, db: "Session") -> _userSchemas.UserResponse:
     """
     Updates an existing user by their user_id.
 
@@ -83,8 +100,6 @@ def update_user(user_id: int, user: _userSchemas.UpdateUser, db: "Session") -> _
         db_user.last_name = user.last_name
     if user.email:
         db_user.email = user.email
-    if user.phone_number:
-        db_user.phone_number = user.phone_number
 
     db.commit()
     db.refresh(db_user)
@@ -92,7 +107,7 @@ def update_user(user_id: int, user: _userSchemas.UpdateUser, db: "Session") -> _
     return db_user
 
 
-def delete_user(user_id: int, db: "Session") -> _userSchemas.User:
+def delete_user(user_id: int, db: "Session") -> _userSchemas.UserResponse:
     """
     Deletes a user from the database by their user_id.
 
@@ -132,3 +147,9 @@ def get_all_users(db: "Session") -> List[_userModels.User]:
         List[_userModels.User]: A list of all users in the database.
     """
     return db.query(_userModels.User).all()
+
+
+def get_user(db: "Session", username: str) -> _userSchemas.UserResponse:
+    if username in db:
+        user_dict = db[username]
+        return _userSchemas.UserInDB(**user_dict)
