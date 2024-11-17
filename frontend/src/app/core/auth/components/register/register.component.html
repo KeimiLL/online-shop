@@ -2,7 +2,7 @@
     <header>
         <h3>Create an account</h3>
     </header>
-    <form [formGroup]="myForm" class="register">
+    <form [formGroup]="registerFormGroup" class="register">
         <mat-form-field class="register__field">
             <mat-label>First Name</mat-label>
             <input
@@ -70,7 +70,7 @@
                 required
                 placeholder="Confirm password..."
             />
-            @if (myForm.hasError('matchValuesValidator')) {
+            @if (registerFormGroup.hasError('matchValuesValidator')) {
                 <mat-error>Passwords don't match</mat-error>
             } @else if (confirmPassword?.errors) {
                 <mat-error>Invalid confirm password</mat-error>
@@ -82,8 +82,8 @@
             mat-raised-button
             type="submit"
             (click)="onSubmit()"
-            [disabled]="!myForm.valid"
-            [ngClass]="{ 'register__button--invalid': !myForm.valid }"
+            [disabled]="!registerFormGroup.valid"
+            [ngClass]="{ 'register__button--invalid': !registerFormGroup.valid }"
         >
             Register Now
         </button>

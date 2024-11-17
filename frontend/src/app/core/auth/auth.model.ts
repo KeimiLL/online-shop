@@ -1,12 +1,19 @@
-export interface User {
-    id?: number;
-    first_name: string;
-    last_name: string;
+export interface UserBase {
     email: string;
-
+    password: string;
 }
-export interface UserForm {
+
+export interface User extends UserBase {
     firstName: string;
     lastName: string;
-    email: string;
+}
+
+export interface DBUser extends UserBase {
+    first_name: string;
+    last_name: string;
+}
+
+export interface TokenResponse {
+    access_token: string;
+    token_type: string;
 }

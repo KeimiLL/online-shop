@@ -29,6 +29,11 @@
 
         &__button {
             width: 100%;
+
+            &--invalid {
+                border: 1px solid rgb(177, 177, 177);
+                color: rgb(175, 175, 175);
+            }
         }
     }
 }
