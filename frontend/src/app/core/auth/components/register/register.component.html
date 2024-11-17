@@ -1,5 +1,91 @@
 <div class="container">
-    <div class="register">
-      REGISTER
-    </div>
-  </div>
+    <header>
+        <h3>Create an account</h3>
+    </header>
+    <form [formGroup]="registerFormGroup" class="register">
+        <mat-form-field class="register__field">
+            <mat-label>First Name</mat-label>
+            <input
+                matInput
+                type="text"
+                formControlName="firstName"
+                required
+                placeholder="Your first name..."
+            />
+            @if (firstName?.errors) {
+                <mat-error>Invalid First Name</mat-error>
+            }
+        </mat-form-field>
+
+        <mat-form-field class="register__field">
+            <mat-label>Last Name</mat-label>
+            <input
+                matInput
+                type="text"
+                formControlName="lastName"
+                required
+                placeholder="Your last name..."
+            />
+            @if (lastName?.errors) {
+                <mat-error>Invalid Last Name</mat-error>
+            }
+        </mat-form-field>
+
+        <mat-form-field class="register__field">
+            <mat-label>Email</mat-label>
+            <input
+                matInput
+                type="email"
+                formControlName="email"
+                required
+                placeholder="j.kowalski@gmail.com"
+            />
+            @if (email?.errors) {
+                <mat-error>Invalid Email</mat-error>
+            }
+        </mat-form-field>
+
+        <mat-form-field class="register__field">
+            <mat-label>Password</mat-label>
+            <input
+                matInput
+                type="password"
+                formControlName="password"
+                required
+                placeholder="Enter password..."
+            />
+            @if (password?.hasError('minlength')) {
+                <mat-error>Too short password</mat-error>
+            } @else if (password?.errors) {
+                <mat-error>Invalid password</mat-error>
+            }
+        </mat-form-field>
+
+        <mat-form-field class="register__field">
+            <mat-label>Confirm Password</mat-label>
+            <input
+                matInput
+                type="password"
+                formControlName="confirmPassword"
+                required
+                placeholder="Confirm password..."
+            />
+            @if (registerFormGroup.hasError('matchValuesValidator')) {
+                <mat-error>Passwords don't match</mat-error>
+            } @else if (confirmPassword?.errors) {
+                <mat-error>Invalid confirm password</mat-error>
+            }
+        </mat-form-field>
+
+        <button
+            class="register__button"
+            mat-raised-button
+            type="submit"
+            (click)="onSubmit()"
+            [disabled]="!registerFormGroup.valid"
+            [ngClass]="{ 'register__button--invalid': !registerFormGroup.valid }"
+        >
+            Register Now
+        </button>
+    </form>
+</div>

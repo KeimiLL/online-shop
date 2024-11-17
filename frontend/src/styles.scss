@@ -1,12 +1,33 @@
+@use "@angular/material/prebuilt-themes/azure-blue.css";
+@use "@angular/material" as mat;
+
+$theme: mat.define-theme(
+    (
+        color: (
+            theme-type: dark,
+            primary: mat.$violet-palette,
+        ),
+    )
+);
+
+html {
+    @include mat.core-theme($theme);
+    @include mat.button-theme($theme);
+}
+
 * {
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-  background-color: #a9c9ff;
-  background-image: linear-gradient(180deg, #a9c9ff 0%, #ffbbec 100%);
-  background-size: cover;
-  width: 100vw;
-  height: 100vh;
+    background-color: #a9c9ff;
+    background-image: linear-gradient(180deg, #a9c9ff 0%, #ffbbec 100%);
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    display: flex;
+    justify-content: center;
 }

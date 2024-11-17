@@ -11,3 +11,12 @@
 (**ORM** - opcjonalny komponent pozwalający opisać za pomocą klas tabele w bazie danych)
 - **FastAPI** - nowoczesny, wydajny framework webowy do budowania API z użyciem Pythona bazujący na standardowym typowaniu Pythona.
 - **PostgreSQL** – zaawansowany system zarządzania relacyjnymi bazami danych, oferujący wysoką wydajność, transakcyjność oraz wsparcie dla złożonych typów danych.
+
+## Database
+
+1. Open an interactive Bash shell inside the fastapi-postgres Docker container:
+   **`docker exec -it fastapi-postgres bash`**
+1. Connect to `fastapi_database` as `myuser` in `psql`:
+   **`psql -U myuser -d fastapi_database`**
+1. Lists all tables:
+   **`\dt`**
