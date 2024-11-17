@@ -13,7 +13,7 @@
                 placeholder="Your first name..."
             />
             @if (firstName?.errors) {
-            <mat-error>Invalid Control</mat-error>
+                <mat-error>Invalid First Name</mat-error>
             }
         </mat-form-field>
 
@@ -27,7 +27,7 @@
                 placeholder="Your last name..."
             />
             @if (lastName?.errors) {
-            <mat-error>Invalid Control</mat-error>
+                <mat-error>Invalid Last Name</mat-error>
             }
         </mat-form-field>
 
@@ -41,21 +41,7 @@
                 placeholder="j.kowalski@gmail.com"
             />
             @if (email?.errors) {
-            <mat-error>Invalid Control</mat-error>
-            }
-        </mat-form-field>
-
-        <mat-form-field class="register__field">
-            <mat-label>Phone number</mat-label>
-            <input
-                matInput
-                type="tel"
-                formControlName="phoneNumber"
-                required
-                placeholder="111 222 333"
-            />
-            @if (phoneNumber?.errors) {
-            <mat-error>Invalid Control</mat-error>
+                <mat-error>Invalid Email</mat-error>
             }
         </mat-form-field>
 
@@ -69,7 +55,25 @@
                 placeholder="Enter password..."
             />
             @if (password?.hasError('minlength')) {
-            <mat-error>Too </mat-error>
+                <mat-error>Too short password</mat-error>
+            } @else if (password?.errors) {
+                <mat-error>Invalid password</mat-error>
+            }
+        </mat-form-field>
+
+        <mat-form-field class="register__field">
+            <mat-label>Confirm Password</mat-label>
+            <input
+                matInput
+                type="password"
+                formControlName="confirmPassword"
+                required
+                placeholder="Confirm password..."
+            />
+            @if (myForm.hasError('matchValuesValidator')) {
+                <mat-error>Passwords don't match</mat-error>
+            } @else if (confirmPassword?.errors) {
+                <mat-error>Invalid confirm password</mat-error>
             }
         </mat-form-field>
 

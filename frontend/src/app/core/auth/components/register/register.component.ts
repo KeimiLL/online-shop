@@ -13,6 +13,7 @@ import { MatSnackBar } from "@angular/material/snack-bar";
 import { CommonModule } from "@angular/common";
 import { AuthHttpService } from "../../auth-http.service";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
+import { matchValuesValidator } from "../../auth.constants";
 
 @Component({
     selector: "app-register",
@@ -33,23 +34,27 @@ export class RegisterComponent {
     #snackBar = inject(MatSnackBar);
 
     constructor() {
-        this.myForm = new FormGroup({
-            firstName: new FormControl<string>("", Validators.required),
-            lastName: new FormControl<string>("", Validators.required),
-            email: new FormControl<string>("", [
-                Validators.required,
-                Validators.email,
-            ]),
-            phoneNumber: new FormControl<string>("", Validators.required),
-            password: new FormControl<string>("", [
-                Validators.required,
-                Validators.minLength(8),
-            ]),
-            confirmPassword: new FormControl<string>("", [
-                Validators.required,
-                Validators.minLength(8),
-            ]),
-        });
+        this.myForm = new FormGroup(
+            {
+                firstName: new FormControl<string>("", Validators.required),
+                lastName: new FormControl<string>("", Validators.required),
+                email: new FormControl<string>("", [
+                    Validators.required,
+                    Validators.email,
+                ]),
+                password: new FormControl<string>("", [
+                    Validators.required,
+                    Validators.minLength(8),
+                ]),
+                confirmPassword: new FormControl<string>("", [
+                    Validators.required,
+                    Validators.minLength(8),
+                ]),
+            },
+            {
+                validators: matchValuesValidator("password", "confirmPassword"),
+            }
+        );
     }
 
     get firstName() {
@@ -64,10 +69,6 @@ export class RegisterComponent {
         return this.myForm.get("email");
     }
 
-    get phoneNumber() {
-        return this.myForm.get("phoneNumber");
-    }
-
     get password() {
         return this.myForm.get("password");
     }
@@ -77,12 +78,11 @@ export class RegisterComponent {
     }
 
     onSubmit(): void {
-        const { firstName, lastName, email, phoneNumber } = this.myForm.value;
+        const { firstName, lastName, email } = this.myForm.value;
         const newUser: User = {
             first_name: firstName,
             last_name: lastName,
             email,
-            phone_number: phoneNumber,
         };
         this.#authHTTPService
             .createUser$(newUser)
