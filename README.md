@@ -20,3 +20,6 @@
    **`psql -U myuser -d fastapi_database`**
 1. Lists all tables:
    **`\dt`**
+
+## Swagger
+![swagger img](./frontend/assets/fastapi.png)
