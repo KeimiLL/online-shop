@@ -1,3 +1,4 @@
+import { CommonModule } from "@angular/common";
 import {
     ChangeDetectionStrategy,
     Component,
@@ -13,9 +14,9 @@ import {
 import { MatButtonModule } from "@angular/material/button";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
-import { AuthHttpService } from "../../auth-http.service";
 import { Subscription, tap } from "rxjs";
-import { CommonModule } from "@angular/common";
+
+import { AuthHttpService } from "../../auth-http.service";
 
 @Component({
     selector: "app-login",

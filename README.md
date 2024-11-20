@@ -22,4 +22,4 @@
    **`\dt`**
 
 ## Swagger
-![swagger img](./frontend/assets/fastapi.png)
+![swagger img](./frontend/assets/readme/fastapi.png)

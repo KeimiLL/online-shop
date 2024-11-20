@@ -1,0 +1,28 @@
+<div class="auth">
+    <div class="auth__container">
+        <div class="form">
+            <div class="form__top-bar">
+                <p class="form__question">{{ buttonQuestion() }}</p>
+                <button mat-button (click)="toggleAuthPage()">
+                    {{ buttonMessage() }}
+                </button>
+            </div>
+            <div class="form__content">
+                @if (isLogin()) {
+                <app-login />
+                } @else {
+                <app-register />
+                }
+            </div>
+        </div>
+        <div class="info">
+            @if (isLogin()) {
+            <p>Welcome to our online shop</p>
+            <p>Our design, your ideas</p>
+            } @else {
+            <p>Welcome to our online shop</p>
+            <p>Our design, your ideas</p>
+            }
+        </div>
+    </div>
+</div>

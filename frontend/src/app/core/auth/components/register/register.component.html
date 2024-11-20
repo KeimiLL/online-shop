@@ -1,9 +1,6 @@
-<div class="container">
-    <header>
-        <h3>Create an account</h3>
-    </header>
-    <form [formGroup]="registerFormGroup" class="register">
-        <mat-form-field class="register__field">
+<div class="login-register">
+    <form [formGroup]="registerFormGroup" class="form">
+        <mat-form-field class="form__field">
             <mat-label>First Name</mat-label>
             <input
                 matInput
@@ -13,11 +10,11 @@
                 placeholder="Your first name..."
             />
             @if (firstName?.errors) {
-                <mat-error>Invalid First Name</mat-error>
+            <mat-error>Invalid First Name</mat-error>
             }
         </mat-form-field>
 
-        <mat-form-field class="register__field">
+        <mat-form-field class="form__field">
             <mat-label>Last Name</mat-label>
             <input
                 matInput
@@ -27,11 +24,11 @@
                 placeholder="Your last name..."
             />
             @if (lastName?.errors) {
-                <mat-error>Invalid Last Name</mat-error>
+            <mat-error>Invalid Last Name</mat-error>
             }
         </mat-form-field>
 
-        <mat-form-field class="register__field">
+        <mat-form-field class="form__field">
             <mat-label>Email</mat-label>
             <input
                 matInput
@@ -41,11 +38,11 @@
                 placeholder="j.kowalski@gmail.com"
             />
             @if (email?.errors) {
-                <mat-error>Invalid Email</mat-error>
+            <mat-error>Invalid Email</mat-error>
             }
         </mat-form-field>
 
-        <mat-form-field class="register__field">
+        <mat-form-field class="form__field">
             <mat-label>Password</mat-label>
             <input
                 matInput
@@ -55,13 +52,13 @@
                 placeholder="Enter password..."
             />
             @if (password?.hasError('minlength')) {
-                <mat-error>Too short password</mat-error>
+            <mat-error>Too short password</mat-error>
             } @else if (password?.errors) {
-                <mat-error>Invalid password</mat-error>
+            <mat-error>Invalid password</mat-error>
             }
         </mat-form-field>
 
-        <mat-form-field class="register__field">
+        <mat-form-field class="form__field">
             <mat-label>Confirm Password</mat-label>
             <input
                 matInput
@@ -71,19 +68,19 @@
                 placeholder="Confirm password..."
             />
             @if (registerFormGroup.hasError('matchValuesValidator')) {
-                <mat-error>Passwords don't match</mat-error>
+            <mat-error>Passwords don't match</mat-error>
             } @else if (confirmPassword?.errors) {
-                <mat-error>Invalid confirm password</mat-error>
+            <mat-error>Invalid confirm password</mat-error>
             }
         </mat-form-field>
 
         <button
-            class="register__button"
+            class="form__button"
             mat-raised-button
             type="submit"
             (click)="onSubmit()"
             [disabled]="!registerFormGroup.valid"
-            [ngClass]="{ 'register__button--invalid': !registerFormGroup.valid }"
+            [ngClass]="{ 'form__button--invalid': !registerFormGroup.valid }"
         >
             Register Now
         </button>

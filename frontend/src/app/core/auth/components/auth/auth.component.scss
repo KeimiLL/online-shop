@@ -1,0 +1,65 @@
+$list: leather_sofa, chair, lamp, mountains;
+$random-index: random(length($list));
+$img: nth($list, $random-index);
+
+.auth {
+    width: 100vw;
+    height: 100vh;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background-image: url("../../../../../public/backgrounds/#{$img}.jpg");
+    background-size: cover;
+    color: white;
+
+    &__container {
+        position: absolute;
+        top: 7rem;
+        display: flex;
+        background-color: transparent;
+        backdrop-filter: blur(10px);
+        height: 610px;
+        border-radius: 1rem;
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
+            rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+        align-self: center;
+        margin-right: 70px;  
+
+        .form {
+            $block: &;
+            padding: 1rem;
+            width: 25rem;
+
+            &__top-bar {
+                width: 100%;
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+                padding-bottom: 3rem;
+                margin-right: 1rem;
+
+                @at-root #{ $block }__question {
+                    font-size: 0.875rem;
+                    margin: 0;
+                }
+            }
+
+            &__content {
+                padding: 2rem;
+            }
+        }
+
+        .info {
+            width: 30rem;
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            border-radius: 1rem;
+            flex: 1;
+            opacity: 0.8;
+        }
+    }
+}
