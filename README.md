@@ -21,5 +21,8 @@
 1. Lists all tables:
    **`\dt`**
 
-## Swagger
-![swagger img](./frontend/assets/readme/fastapi.png)
+## Design preview
+![login1 img](./frontend/public/assets/readme/login1.png)
+![register1 img](./frontend/public/assets/readme/register1.png)
+![login2 img](./frontend/public/assets/readme/login2.png)
+![register2 img](./frontend/public/assets/readme/register2.png)
