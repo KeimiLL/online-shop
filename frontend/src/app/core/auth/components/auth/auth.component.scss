@@ -9,7 +9,7 @@ $img: nth($list, $random-index);
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    background-image: url("../../../../../public/backgrounds/#{$img}.jpg");
+    background-image: url("../../../../../public/backgrounds/#{$img}.jpg"); 
     background-size: cover;
     color: white;
 
@@ -19,12 +19,12 @@ $img: nth($list, $random-index);
         display: flex;
         background-color: transparent;
         backdrop-filter: blur(10px);
-        height: 610px;
+        height: 38.125rem;
         border-radius: 1rem;
         box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
             rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
         align-self: center;
-        margin-right: 70px;  
+        margin-right: 4.5rem;  
 
         .form {
             $block: &;
@@ -51,8 +51,9 @@ $img: nth($list, $random-index);
         }
 
         .info {
-            width: 30rem;
+            width: 25rem;
             background-color: white;
+            color: black;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -60,6 +61,17 @@ $img: nth($list, $random-index);
             border-radius: 1rem;
             flex: 1;
             opacity: 0.8;
+            font-weight: 500;
+            font-size: 1.125rem;
+
+            &__accent {
+                color: rgb(98, 73, 45);
+            }
+
+            img {
+                width: 6rem;
+                height: 6rem;
+            }
         }
     }
 }

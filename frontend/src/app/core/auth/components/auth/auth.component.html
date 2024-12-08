@@ -9,19 +9,23 @@
             </div>
             <div class="form__content">
                 @if (isLogin()) {
-                <app-login />
+                    <app-login />
                 } @else {
-                <app-register />
+                    <app-register />
                 }
             </div>
         </div>
         <div class="info">
             @if (isLogin()) {
-            <p>Welcome to our online shop</p>
-            <p>Our design, your ideas</p>
+                <p>Welcome to our online shop</p>
+                <p><span class="info__accent">Login</span> to your account</p>
+                <div>
+                    <!-- <div>TODO: Add content</div> -->
+                </div>
             } @else {
-            <p>Welcome to our online shop</p>
-            <p>Our design, your ideas</p>
+                <p>Welcome to our online shop</p>
+                <p><span class="info__accent">Create</span> profile</p>
+                <!-- <div>TODO: Add content</div> -->
             }
         </div>
     </div>
