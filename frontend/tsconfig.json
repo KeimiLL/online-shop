@@ -3,6 +3,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "baseUrl": "src",
     "outDir": "./dist/out-tsc",
     "strict": true,
     "strictNullChecks": true,
@@ -30,5 +31,12 @@
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
     "strictTemplates": true
-  }
+  },
+  "include": [
+        "**/*.d.ts",
+        "**/*.ts",
+        "**/*.html",
+        "**/*.js",
+        "eslint.config.mjs"
+    ]
 }
