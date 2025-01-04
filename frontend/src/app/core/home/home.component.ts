@@ -1,15 +1,12 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-
-import { NavbarComponent } from '../navbar/navbar.component';
+import { ChangeDetectionStrategy, Component } from "@angular/core";
+import { MatButtonModule } from "@angular/material/button";
 
 @Component({
-  selector: 'app-home',
-  standalone: true,
-  imports: [NavbarComponent],
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: "app-home",
+    standalone: true,
+    imports: [MatButtonModule],
+    templateUrl: "./home.component.html",
+    styleUrl: "./home.component.scss",
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HomeComponent {
-
-}
+export class HomeComponent {}
