@@ -17,11 +17,11 @@ $img: nth($list, $random-index);
         top: 7rem;
         display: flex;
         background-color: transparent;
-        backdrop-filter: blur(10px);
+        backdrop-filter: blur(0.625rem);
         height: 38.125rem;
         border-radius: 1rem;
-        box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
-            rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+        box-shadow: rgba(0, 0, 0, 0.16) 0 0.625rem 2rem 0,
+            rgba(0, 0, 0, 0.06) 0 0 0 0.0625rem;
         align-self: center;
         margin-right: 4.5rem;
 
