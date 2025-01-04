@@ -23,10 +23,27 @@
    **`psql -U myuser -d fastapi_database`**
 1. Lists all tables:
    **`\dt`**
+1. Users test table preview:
+![table users img](./frontend/public/assets/readme/table-users-db.png)
 
 ## Design preview
+
+### Login/Register
 
 ![login1 img](./frontend/public/assets/readme/login1.png)
 ![register1 img](./frontend/public/assets/readme/register1.png)
 ![login2 img](./frontend/public/assets/readme/login2.png)
 ![register2 img](./frontend/public/assets/readme/register2.png)
+
+### Home
+
+![home page img](./frontend/public/assets/readme/home-page.png)
+
+### Home cont.
+
+![home page 2 img](./frontend/public/assets/readme/home-page2.png)
+
+
+## Swagger
+
+![fastapi img](./frontend/public/assets/readme/fastapi.png)

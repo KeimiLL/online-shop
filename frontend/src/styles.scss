@@ -18,6 +18,9 @@ html {
 * {
     margin: 0;
     padding: 0;
+    font-family: "Mulish", serif;
+    font-optical-sizing: auto;
+    font-style: normal;
 }
 
 .login-register {
@@ -42,7 +45,7 @@ html {
             width: 100%;
 
             &--invalid {
-                border: 1px solid rgb(177, 177, 177);
+                border: 0.0625rem solid rgb(177, 177, 177);
                 color: rgb(175, 175, 175);
             }
         }

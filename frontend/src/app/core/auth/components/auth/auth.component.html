@@ -9,23 +9,53 @@
             </div>
             <div class="form__content">
                 @if (isLogin()) {
-                    <app-login />
+                <app-login />
                 } @else {
-                    <app-register />
+                <app-register />
                 }
             </div>
         </div>
         <div class="info">
             @if (isLogin()) {
-                <p>Welcome to our online shop</p>
-                <p><span class="info__accent">Login</span> to your account</p>
-                <div>
-                    <!-- <div>TODO: Add content</div> -->
-                </div>
+            <p>Welcome to our online shop</p>
+            <p><span class="info__accent">Login</span> to your account</p>
+            <div class="info__graphics-container">
+                <img
+                    class="info__graphic"
+                    src="../../../../../public/auth-images/furniture3.png"
+                    alt=""
+                />
+                <img
+                    class="info__graphic"
+                    src="../../../../../public/auth-images/furniture5.png"
+                    alt=""
+                />
+                <img
+                    class="info__graphic"
+                    src="../../../../../public/auth-images/furniture7.png"
+                    alt=""
+                />
+            </div>
             } @else {
-                <p>Welcome to our online shop</p>
-                <p><span class="info__accent">Create</span> profile</p>
-                <!-- <div>TODO: Add content</div> -->
+            <p>Welcome to our online shop</p>
+            <p><span class="info__accent">Create</span> profile</p>
+            <div class="info__graphics-container">
+                <img
+                    class="info__graphic"
+                    src="../../../../../public/auth-images/furniture6.png"
+                    alt=""
+                />
+                <img
+                    class="info__graphic"
+                    src="../../../../../public/auth-images/furniture1.png"
+                    alt=""
+                />
+                <img
+                    class="info__graphic"
+                    src="../../../../../public/auth-images/furniture4.png"
+                    alt=""
+                />
+            </div>
             }
         </div>
     </div>

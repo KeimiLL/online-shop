@@ -1,31 +1,122 @@
-.navbar {
-  $block: &;
-  margin: 0;
-  padding: 0;
+$circle-count: 5;
+$base-inset: 0.15rem;
+$inset-step: 0.15rem;
 
-  &__list {
+@mixin circle-style($index) {
+    border-radius: inherit;
+    position: absolute;
+    background: linear-gradient(#ffffff27, #ffffff28);
+    box-shadow: -0.25rem 0.25rem 0.5rem #64646f33;
+    transition: all 0.2s ease-in-out;
+    inset: calc(#{$base-inset} + (#{$index - 1} * #{$inset-step}));
+    transition-delay: calc(#{$index * 0.1}s);
+}
+
+.navbar {
+    $block: &;
     display: flex;
     justify-content: center;
-    list-style-type: none;
-    padding: 0.1rem;
+    align-items: center;
+    gap: 4rem;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 2rem 0;
+    transition: 0.5s;
+    z-index: 9999;
 
-    @at-root #{ $block }__item {
-      padding: 0.5rem 2rem;
-      transition: 0.1s ease-in-out;
-      border-radius: 0.5rem;
+    &__graphics {
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
-      @at-root #{ $block }__link {
-        text-decoration: none;
-        color: black;
-        font-size: 1rem;
-        font-family: Arial, Helvetica, sans-serif;
-        color: #000000;
-        font-weight: 500;
-      }
+        #{ $block }__name {
+            padding-left: 1.5rem;
+            width: 8.75rem;
+        }
 
-      &:hover {
-        background-color: #d4e3fd;
-      }
+        #{ $block }__logo {
+            width: 4.5rem;
+        }
     }
-  }
+
+    &.sticky {
+        padding: 0.5rem 0;
+        background-color: white;
+
+        #{ $block }__graphics {
+            #{ $block }__name {
+                padding-left: 1rem;
+                width: 5.5rem;
+            }
+
+            #{ $block }__logo {
+                width: 2.5rem;
+            }
+        }
+    }
+
+    nav {
+        margin: 0;
+        padding: 0;
+
+        @at-root #{ $block }__list {
+            display: flex;
+            justify-content: center;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+
+            @at-root #{ $block }__item {
+                transition: 0.2s ease-in-out;
+
+                @at-root #{ $block }__link {
+                    text-decoration: none;
+                    color: black;
+                    font-size: 1rem;
+                    color: #000000;
+                    font-weight: 500;
+                    padding: 0.5rem 2rem;
+                    // border-radius: 1rem;
+
+                    &--active {
+                        color: #5b5eb1;
+                        font-weight: bold;
+                        border-bottom: 0.0625rem solid #5b5eb1;
+                    }
+                }
+
+                &:hover {
+                    transform: scale(1.1);
+                }
+            }
+        }
+    }
+}
+
+.design {
+    $block: &;
+    position: relative;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #a5fecb, #20bdff);
+    transform-style: preserve-3d;
+    transition: all 0.2s ease-in-out;
+
+    @for $i from 1 through $circle-count {
+        &__item:nth-child(#{$i}) {
+            @include circle-style($i);
+        }
+    }
+
+    &:hover {
+        transform: rotate3d(1, 1, 0, 60deg);
+
+        @for $i from 1 through $circle-count {
+            #{ $block }__item:nth-child(#{$i}) {
+                transform: translate3d(0, 0, calc(#{$i * 0.5rem}));
+            }
+        }
+    }
 }

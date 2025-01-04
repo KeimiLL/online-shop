@@ -1,5 +1,10 @@
 import { CommonModule } from "@angular/common";
-import { ChangeDetectionStrategy, Component, inject, OnDestroy } from "@angular/core";
+import {
+    ChangeDetectionStrategy,
+    Component,
+    inject,
+    OnDestroy,
+} from "@angular/core";
 import {
     FormControl,
     FormGroup,
@@ -10,7 +15,8 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { MatSnackBar } from "@angular/material/snack-bar";
-import { Subscription } from "rxjs";
+import { Router } from "@angular/router";
+import { Subscription, tap } from "rxjs";
 
 import { matchValuesValidator } from "../../auth.constants";
 import { DBUser } from "../../auth.model";
@@ -28,13 +34,14 @@ import { AuthHttpService } from "../../auth-http.service";
     ],
     templateUrl: "./register.component.html",
     styleUrl: "./register.component.scss",
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RegisterComponent implements OnDestroy {
     protected registerFormGroup: FormGroup;
     protected createUserSubscription = new Subscription();
     readonly #authHTTPService = inject(AuthHttpService);
     #snackBar = inject(MatSnackBar);
+    #router = inject(Router);
 
     constructor() {
         this.registerFormGroup = new FormGroup(
@@ -85,20 +92,23 @@ export class RegisterComponent implements OnDestroy {
     }
 
     protected onSubmit(): void {
-        const { firstName, lastName, email, password } = this.registerFormGroup.value;
+        const { firstName, lastName, email, password } =
+            this.registerFormGroup.value;
         const newUser: DBUser = {
             first_name: firstName,
             last_name: lastName,
             email,
-            password
+            password,
         };
         this.createUserSubscription = this.#authHTTPService
             .createUser$(newUser)
-            .subscribe(() => {
-                this.#snackBar.open("User created successfully", "Close", {
-                    duration: 3000,
-                });
-                this.registerFormGroup.reset();
-            });
+            .pipe(
+                tap(() => this.#router.navigate(['/home'])),
+                tap(() =>  this.#snackBar.open("User created successfully", "Close", {
+                    duration: 5000,
+                })),
+                tap(() => this.registerFormGroup.reset())
+            )
+            .subscribe();
     }
 }

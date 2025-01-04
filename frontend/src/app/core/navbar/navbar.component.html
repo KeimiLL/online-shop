@@ -1,19 +1,69 @@
-<nav class="navbar">
-    <ul class="navbar__list">
-        <li class="navbar__item">
-            <a class="navbar__link" routerLink="/">HOME</a>
-        </li>
-        <li class="navbar__item">
-            <a class="navbar__link" routerLink="/login">LOGIN</a>
-        </li>
-        <li class="navbar__item">
-            <a class="navbar__link" routerLink="/register">REGISTER</a>
-        </li>
-        <li class="navbar__item">
-            <a class="navbar__link" routerLink="/shop">SHOP</a>
-        </li>
-        <li class="navbar__item">
-            <a class="navbar__link" routerLink="/contact">CONTACT</a>
-        </li>
-    </ul>
-</nav>
+<div
+    class="navbar"
+    (scroll)="onWindowScroll()"
+    [ngClass]="{ sticky: isAuth() }"
+>
+    <div class="navbar__graphics">
+        <!-- <div class="design">
+            <div class="design__item"></div>
+            <div class="design__item"></div>
+            <div class="design__item"></div>
+            <div class="design__item"></div>
+            <div class="design__item"></div>
+        </div> -->
+        <img
+            class="navbar__logo"
+            src="../../../public/home-page/ci-logo-nobg.png"
+            alt="Logo"
+        />
+        <img
+            class="navbar__name"
+            src="../../../public/home-page/ci-name-logo-nobg.png"
+            alt="Name logo"
+        />
+    </div>
+    <nav>
+        <ul class="navbar__list">
+            <li class="navbar__item">
+                <a
+                    class="navbar__link"
+                    routerLink="/home"
+                    [routerLinkActive]="['navbar__link--active']"
+                    >HOME</a
+                >
+            </li>
+            <li class="navbar__item">
+                <a
+                    class="navbar__link"
+                    routerLink="/home222"
+                    [routerLinkActive]="['navbar__link--active']"
+                    >COLLECTIONS</a
+                >
+            </li>
+            <li class="navbar__item">
+                <a
+                    class="navbar__link"
+                    routerLink="/home333"
+                    [routerLinkActive]="['navbar__link--active']"
+                    >BENEFITS</a
+                >
+            </li>
+            <li class="navbar__item">
+                <a
+                    class="navbar__link"
+                    routerLink="/auth"
+                    [routerLinkActive]="['navbar__link--active']"
+                    >ACCOUNT</a
+                >
+            </li>
+            <li class="navbar__item">
+                <a
+                    class="navbar__link"
+                    routerLink="/home444"
+                    [routerLinkActive]="['navbar__link--active']"
+                    >CONTACT</a
+                >
+            </li>
+        </ul>
+    </nav>
+</div>
