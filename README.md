@@ -28,6 +28,9 @@
 
 ## Design preview
 
+<video loop autoplay src="https://github.com/user-attachments/assets/04a7b2e3-e8e7-4cfb-be53-481f491ec5bf"></video>
+![auth-preview](https://github.com/user-attachments/assets/a27d38f5-3ad8-45e0-a3d1-2d3875d58946)
+
 ### Login/Register
 
 ![login1 img](./frontend/public/assets/readme/login1.png)
