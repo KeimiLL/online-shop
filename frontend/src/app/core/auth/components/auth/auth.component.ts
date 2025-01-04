@@ -26,7 +26,7 @@ export class AuthComponent {
     protected buttonQuestion = computed(() =>
         this.isLogin()
             ? "Do not have an account yet?"
-            : "Already have an account?" 
+            : "Already have an account?"
     );
 
     protected toggleAuthPage() {
