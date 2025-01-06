@@ -24,7 +24,7 @@ import { filter } from "rxjs";
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavbarComponent implements OnInit {
-    protected isAuth = signal<boolean>(false);
+    protected isHome = signal<boolean>(false);
 
     readonly #router = inject(Router);
 
@@ -33,14 +33,14 @@ export class NavbarComponent implements OnInit {
             .pipe(filter((event) => event instanceof NavigationEnd))
             .subscribe((event: NavigationEnd) => {
                 console.log(event.url);
-                this.isAuth.set(event.url === "/auth");
+                this.isHome.set(event.url === "/home");
             });
     }
 
     @HostListener("window:scroll", ["$event"])
     protected onWindowScroll(): void {
         const navbar = document.querySelector(".navbar") as HTMLElement;
-        if (window.scrollY > navbar.clientHeight || this.isAuth()) {
+        if (window.scrollY > navbar.clientHeight || !this.isHome()) {
             navbar.classList.add("sticky");
         } else {
             navbar.classList.remove("sticky");
