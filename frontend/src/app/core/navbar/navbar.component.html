@@ -1,26 +1,23 @@
 <div
     class="navbar"
     (scroll)="onWindowScroll()"
-    [ngClass]="{ sticky: isAuth() }"
+    [ngClass]="{ sticky: !isHome() }"
 >
     <div class="navbar__graphics">
-        <!-- <div class="design">
-            <div class="design__item"></div>
-            <div class="design__item"></div>
-            <div class="design__item"></div>
-            <div class="design__item"></div>
-            <div class="design__item"></div>
-        </div> -->
-        <img
-            class="navbar__logo"
-            src="../../../public/home-page/ci-logo-nobg.png"
-            alt="Logo"
-        />
-        <img
-            class="navbar__name"
-            src="../../../public/home-page/ci-name-logo-nobg.png"
-            alt="Name logo"
-        />
+        <a routerLink="/home">
+            <img
+                class="navbar__logo"
+                src="../../../public/home-page/ci-logo-nobg.png"
+                alt="Logo"
+            />
+        </a>
+        <a routerLink="/home">
+            <img
+                class="navbar__name"
+                src="../../../public/home-page/ci-name-logo-nobg.png"
+                alt="Name logo"
+            />
+        </a>
     </div>
     <nav>
         <ul class="navbar__list">

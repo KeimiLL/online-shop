@@ -77,7 +77,6 @@ $inset-step: 0.15rem;
                     color: #000000;
                     font-weight: 500;
                     padding: 0.5rem 2rem;
-                    // border-radius: 1rem;
 
                     &--active {
                         color: #5b5eb1;
@@ -89,33 +88,6 @@ $inset-step: 0.15rem;
                 &:hover {
                     transform: scale(1.1);
                 }
-            }
-        }
-    }
-}
-
-.design {
-    $block: &;
-    position: relative;
-    width: 2.5rem;
-    height: 2.5rem;
-    border-radius: 50%;
-    background: linear-gradient(45deg, #a5fecb, #20bdff);
-    transform-style: preserve-3d;
-    transition: all 0.2s ease-in-out;
-
-    @for $i from 1 through $circle-count {
-        &__item:nth-child(#{$i}) {
-            @include circle-style($i);
-        }
-    }
-
-    &:hover {
-        transform: rotate3d(1, 1, 0, 60deg);
-
-        @for $i from 1 through $circle-count {
-            #{ $block }__item:nth-child(#{$i}) {
-                transform: translate3d(0, 0, calc(#{$i * 0.5rem}));
             }
         }
     }
