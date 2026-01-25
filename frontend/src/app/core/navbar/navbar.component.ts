@@ -17,11 +17,10 @@ import { filter } from "rxjs";
 
 @Component({
     selector: "app-navbar",
-    standalone: true,
     imports: [RouterLink, RouterModule, CommonModule],
     templateUrl: "./navbar.component.html",
     styleUrl: "./navbar.component.scss",
-    changeDetection: ChangeDetectionStrategy.OnPush,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NavbarComponent implements OnInit {
     protected isHome = signal<boolean>(false);
@@ -37,7 +36,7 @@ export class NavbarComponent implements OnInit {
             });
     }
 
-    @HostListener("window:scroll", ["$event"])
+    @HostListener("window:scroll")
     protected onWindowScroll(): void {
         const navbar = document.querySelector(".navbar") as HTMLElement;
         if (window.scrollY > navbar.clientHeight || !this.isHome()) {

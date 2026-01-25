@@ -24,7 +24,6 @@ import { AuthHttpService } from "../../auth-http.service";
 
 @Component({
     selector: "app-register",
-    standalone: true,
     imports: [
         ReactiveFormsModule,
         MatButtonModule,
@@ -34,7 +33,7 @@ import { AuthHttpService } from "../../auth-http.service";
     ],
     templateUrl: "./register.component.html",
     styleUrl: "./register.component.scss",
-    changeDetection: ChangeDetectionStrategy.OnPush,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RegisterComponent implements OnDestroy {
     protected registerFormGroup: FormGroup;

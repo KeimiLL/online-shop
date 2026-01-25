@@ -12,11 +12,10 @@ import { RegisterComponent } from "../register/register.component";
 
 @Component({
     selector: "app-auth",
-    standalone: true,
     imports: [LoginComponent, RegisterComponent, MatButtonModule, CommonModule],
     templateUrl: "./auth.component.html",
     styleUrl: "./auth.component.scss",
-    changeDetection: ChangeDetectionStrategy.OnPush,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AuthComponent {
     protected isLogin = signal(true);
