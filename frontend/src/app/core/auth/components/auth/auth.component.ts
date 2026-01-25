@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+
 import {
     ChangeDetectionStrategy,
     Component,
@@ -12,7 +12,7 @@ import { RegisterComponent } from "../register/register.component";
 
 @Component({
     selector: "app-auth",
-    imports: [LoginComponent, RegisterComponent, MatButtonModule, CommonModule],
+    imports: [LoginComponent, RegisterComponent, MatButtonModule],
     templateUrl: "./auth.component.html",
     styleUrl: "./auth.component.scss",
     changeDetection: ChangeDetectionStrategy.OnPush
