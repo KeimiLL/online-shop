@@ -18,7 +18,7 @@ $img: nth($list, $random-index);
         display: flex;
         background-color: transparent;
         backdrop-filter: blur(0.625rem);
-        height: 38.125rem;
+        height: 35rem;
         border-radius: 1rem;
         box-shadow: rgba(0, 0, 0, 0.16) 0 0.625rem 2rem 0,
             rgba(0, 0, 0, 0.06) 0 0 0 0.0625rem;
@@ -35,7 +35,7 @@ $img: nth($list, $random-index);
                 display: flex;
                 justify-content: flex-end;
                 align-items: center;
-                padding-bottom: 3rem;
+                padding-bottom: 2rem;
                 margin-right: 1rem;
 
                 @at-root #{ $block }__question {
@@ -74,17 +74,17 @@ $img: nth($list, $random-index);
                 flex-direction: column;
 
                 @at-root #{ $block }__graphic {
-                    width: 10rem;
+                    width: 8rem;
                     height: auto;
-                    border-radius: 5rem;
-                    transition: transform 0.3s;
+                    border-radius: 4rem;
+                    transition: transform 0.2s;
 
                     &:nth-child(odd) {
                         align-self: flex-end;
                     }
 
                     &:hover {
-                        transform: scale(1.1);
+                        transform: scale(1.2);
                     }
                 }
             }

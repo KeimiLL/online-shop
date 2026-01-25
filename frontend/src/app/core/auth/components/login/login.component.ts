@@ -19,7 +19,6 @@ import { AuthHttpService } from "../../auth-http.service";
 
 @Component({
     selector: "app-login",
-    standalone: true,
     imports: [
         ReactiveFormsModule,
         MatButtonModule,
@@ -29,7 +28,7 @@ import { AuthHttpService } from "../../auth-http.service";
     ],
     templateUrl: "./login.component.html",
     styleUrl: "./login.component.scss",
-    changeDetection: ChangeDetectionStrategy.OnPush,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LoginComponent implements OnDestroy {
     protected loginFormGroup: FormGroup;
